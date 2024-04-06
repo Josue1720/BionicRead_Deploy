@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bionic Reading Tool</title>
+    <link rel="stylesheet" href="style.css">
+   <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+    <script src="https://kit.fontawesome.com/af93a90fd5.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="images/fav.png">
+    <script src="app.js"></script>
+    
+</head>
+<body>
+    <nav>
+        <h2>Bionic Reading Tool</h2>
+    </nav>
+    <div class="input_container" style="margin-top: 20px;">
+     <!--    <h1>Bionic Reading Tool Web App</h1> -->
+        <label for="inputTextArea">Enter Readings: </label>
+        <textarea id="inputTextArea"></textarea>
+        <div class="buttons">
+            <button class="convert" onclick="convertToBionic()"><b>Convert to Bionic</b></button>
+            <button class="clear" onclick="clearInput()">clear<i class="fa-solid fa-trash"></i></button>
+        </div>
+       
+
+    </div>
+
+    <div id="outputContainer">
+        <h2>Bionic Formatted Text:</h2>
+        <div id="outputTextArea"></div>
+        <div class="btn">
+            <button id="print"><b>Download as Bionic PDF</b></button>
+            <button id = "copy" class ="copy"  onclick="copy()">Copy to Clipboard<i class="fa-solid fa-copy"></i></button>
+        </div>
+        
+
+    </div>
+    <script type="text/javascript">
+        document.getElementById('print').addEventListener('click', () => { window.print() });
+        // Prints area to which class was assigned only
+        </script>
+        <div style="position: relative; margin-top: 20px;">
+            <button style="padding: 10px; background-color: green; border-radius: 4px; color: white; position: absolute; left: 50%; transform: translateX(-50%);"><b><a href="index.html">Back To Home</a></b></button>
+        </div>
+        
+
+</body>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+    nav {
+        background-color: green;
+        color: white;
+        padding: 2px 15px;
+        text-align: center;
+        }
+#inputTextArea {
+    width: 100%;
+    height: 200px;
+}
+#outputTextArea {
+    width: 100%;
+    height: 200px;
+    
+}
+
+#outputContainer {
+    margin-top: 20px;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+#print {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.convert{
+    padding: 8px;
+    border-radius: 10px;
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+
+}
+h1{
+    text-align: center;
+}
+.clear{
+    
+    color: black;
+    border-radius: 8px;
+    margin-top: 5px;
+    padding: 7px;
+    margin-left: 40px;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+   
+}
+.copy{
+    margin-left: 40px;
+}
+i{
+   color: black; 
+   margin-left: 3px;
+}
+
+#outputContainer.downloadBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.copy{
+    color: black;
+    border-radius: 8px;
+    margin-top: 5px;
+    padding: 7px;
+
+    }
+
+@media print{
+    body *{
+     display: none;
+     line-height: 2.0;
+
+    }
+    #outputContainer,#outputContainer * {
+        display: inline-block;
+        justify-content: center;
+        padding-top: 5px;
+      
+    }
+    #outputContainer button{
+        display: none;
+    }
+    #outputContainer h2{
+        display: none;
+    }
+    #outputContainer    ::first-line {
+        text-indent: 1em;
+    }
+    header, footer {
+        display: none;
+    }
+    }
+
+
+</style>
+<script>
+    
+function convertToBionic() {
+            const inputText = document.getElementById('inputTextArea').value;
+            const words = inputText.split(' ');
+
+            const bionicText = words.map(word => {
+                if (word.length >= 3) {
+                    return `<strong>${word.substr(0, 3)}</strong>${word.substr(3)}`;
+                } else {
+                    return `<strong>${word}</strong>`;
+                }
+            }).join(' ');
+
+            document.getElementById('outputTextArea').innerHTML = bionicText;
+        }
+function handleBionifyClick() {
+    const bionifiedText = convertToBionic();
+    const outputTextArea = document.getElementById('outputTextArea');
+    outputTextArea.innerHTML = bionifiedText;
+
+            // Calculate the new height based on the content
+    const newHeight = outputTextArea.scrollHeight + 40; // Add extra space for padding
+            
+            // Update the box height
+    document.getElementById('outputContainer').style.height = `${newHeight}px`;
+        }
+/* function downloadPDF() {
+            const bionicText = document.getElementById('outputTextArea').innerHTML;
+            const pdf = new jsPDF();
+            
+            // Add bionic text to the PDF
+            pdf.text(15, 15, bionicText);
+            
+            // Download the PDF
+            pdf.save('bionic_text.pdf');
+        } */
+function clearInput(){
+    document.getElementById('inputTextArea').value = '';
+    document.getElementById('outputTextArea').innerHTML = '';
+}
+
+function copy() {
+    const outputTextArea = document.getElementById('outputTextArea');
+    const range = document.createRange();
+    range.selectNode(outputTextArea);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+
+    try {
+        document.execCommand('copy');
+        alert('Copied to Clipboard!');
+    } catch (err) {
+        console.error('Unable to copy to clipboard', err);
+        alert('Error copying to clipboard. Please try again.');
+    } finally {
+        selection.removeAllRanges();
+    }
+}
+
+const printBtn = document.getElementById('print')
+printBtn.addEventListener('click', function(){
+    print();
+})
+</script>
+</html>

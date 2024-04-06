@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="icon" type="image/x-icon" href="/images/fav.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+nav {
+    background-color: green;
+    color: white;
+    padding: 2px 15px;
+    text-align: center;
+}
+
+.quiz-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+.backBtn{
+   padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold; /* Changed from font-style to font-weight */
+    margin: auto; 
+    margin-bottom: 8px;
+
+}
+
+.iframe-wrapper {
+    width: 100%; /* Set wrapper width to 100% */
+    max-width: 1000px; /* Set maximum width for responsiveness */
+    border: 2px solid black; /* Set border style here */
+    border-radius: 5px; /* Add border radius if desired */
+    overflow: hidden; /* Ensure iframe doesn't overflow parent container */
+}
+
+iframe {
+    width: 100%; /* Make iframe width responsive */
+    height: 600px;
+    border: none;
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>Quiz</h2>
+    </nav>
+    <div class="quiz-container">
+        <div class="iframe-wrapper">
+            <iframe src="https://fill.boloforms.com/proctor/1UWox5Asyqe2qLs-W3PrI0DLO_wuAXnzHWPfhhYjvdM8?p=view" width="100%" height="850px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <!-- <iframe src="https://form-timer.com/start/a9fd0032/viewform?embedded=true" width="100%" height="850px" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> -->
+            <button class ="backBtn" onclick="back()">BACK TO HOME</button>
+        </div>
+    </div>
+</body>
+<script>
+    function back(){
+        Swal.fire({
+                title: "Are You Sure you want to back Home?",
+                text: "",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "../RM.html";
+                }
+            });
+        }
+        
+        
+    
+</script>
+</html>

@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#inputTextArea {
+    width: 100%;
+    height: 200px;
+}
+#outputTextArea {
+    width: 100%;
+    height: 200px;
+    
+}
+
+#outputContainer {
+    margin-top: 20px;
+}
+
+#print {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.convert{
+    padding: 8px;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+
+}
+h1{
+    text-align: center;
+}
+.clear{
+    
+    color: black;
+    border-radius: 8px;
+    margin-top: 5px;
+    padding: 7px;
+    margin-left: 40px;
+}
+.buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+   
+}
+.copy{
+    margin-left: 40px;
+}
+i{
+   color: black; 
+   margin-left: 3px;
+}
+
+#outputContainer.downloadBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+.copy{
+    color: black;
+    border-radius: 8px;
+    margin-top: 5px;
+    padding: 7px;
+
+    }
+
+@media print{
+    body *{
+     display: none;
+
+    }
+    #outputContainer,#outputContainer * {
+        display: inline-block;
+        justify-content: center;
+        padding-top: 5px;
+      
+    }
+    #outputContainer button{
+        display: none;
+    }
+    #outputContainer h2{
+        display: none;
+    }
+    #outputContainer    ::first-line {
+        text-indent: 1em;
+    }
+    header, footer {
+        display: none;
+    }
+    }
+

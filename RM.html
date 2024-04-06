@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Materials</title>
+    <link rel="icon" type="image/x-icon" href="/images/fav.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            background-color: green;
+            color: white;
+            padding: 2px 15px;
+            text-align: center;
+        }
+        .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust column size based on screen width */
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc; /* Set border properties */
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+}
+        .card-content {
+           /*  padding: 10px; */
+            text-align: center;
+        }
+        .card-button {
+          
+          
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn {
+            border: 2px solid black;
+          
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+           
+        }
+        #btnQ{
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            display: none;
+        }
+      
+       
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        .number{
+            background-color: green;
+            padding: 5px;
+            border-radius: 60%;
+            float: left;
+        }
+        .circle {
+            position: relative;
+            width: 40px; /* Adjust the size of the circle */
+            height: 40px; /* Adjust the size of the circle */
+            border-radius: 50%; /* Make the element a circle */
+            background-color: black; /* Color of the circle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white; /* Color of the number */
+            font-size: 20px; /* Adjust the size of the number */
+            font-weight: bold; /* Bold font */
+            display: none; /* panhali display */
+        }
+        .circle::before {
+            content: ''; /* Create the pseudo-element */
+            position: absolute;
+            width: 20px; /* Diameter of the inner circle */
+            height: 20px; /* Diameter of the inner circle */
+            border-radius: 50%; /* Make the element a circle */
+            background-color: white; /* Color of the inner circle */
+            z-index: -1; /* Send it behind the main circle */
+            transform: translateY(50%); 
+        }
+        .set {
+            background-color: green;
+            padding: 5px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2>Reading Materials</h2>
+        
+    </nav>
+    <div class="container">
+       
+        <!-- Repeat the card structure 16 times for a 4 by 4 grid -->
+        <div class="card">
+            <img src="images/Atalanta.jpg" alt="Placeholder Image">
+      
+            <div class="card-content">
+                <h3>Story of Atalanta</h3>
+               <button  id = "readAtalanta"  class="btn" onclick="AL1()" >READ</button>
+                <img  src="images/oedipus.jpg" alt="Placeholder Image">
+                <h3>The Story of Oedipus</h3>
+                <button id="readOedipus"  class="card-button" onclick="AL2()">READ</button> <br>
+            <!--  <button id="btnQ">quiz</button> -->
+               <h2 class="set">SET 1</h2>
+            </div>
+        </div>
+        <!-- <div class="card">
+            <img src="images/oedipus.jpg" alt="Placeholder Image">
+            <div class="card-content">
+                <h3>The Story of Oedipus</h3>
+                <p>
+                   </p>
+                   <button class="card-button" onclick="AL('Readings/2.html')">Read</button> 
+                   <h3 class="circle">2</h3>
+                </div>
+        </div> -->
+        <div class="card">
+            <img src="images/demeter.jpg" alt="Placeholder Image">
+            <div class="card-content">
+                <h3>Demeter and Persephone</h3>
+                <p>
+                   </p>
+                   <button id ="readDemeter" class="card-button" onclick="AL3('Readings/3.html')">READ</button> 
+                   <img src="images/athens.jpg" alt="Placeholder Image">
+                   <h3>The Name Giving of Athens</h3>
+                   <p></p>
+                   <button id = readAthens class="card-button" onclick="AL4('Readings/4.html')">READ</button> 
+
+                   <h3 class="circle">3</h3>
+                   <h2 class="set">SET 2</h2>
+            </div>
+        </div>
+       <!--  <div class="card">
+            <img src="images/athens.jpg" alt="Placeholder Image">
+            <div class="card-content">
+                <h3>The Name Giving of Athens</h3>
+                <p></p>
+                <button class="card-button" onclick="AL('Readings/4.html')">Read</button> 
+                <h3 class="circle">4</h3>
+            </div>
+        </div> -->
+        <div class="card">
+            <img src="images/arachne.jpg" alt="Placeholder Image">
+            <div class="card-content">
+                <h3>The Story of Arachne</h3>
+                <button id="readArachne" class="card-button" onclick="AL5('Readings/5.html')">READ</button> 
+                <img src="images/hepa.jpg" alt="Placeholder Image">
+                <h3>Hephaestus</h3>
+                <button id="readHephasteus" class="card-button" onclick="AL6('Readings/6.html')">READ</button> 
+                <h3 class="circle">5</h3>
+                <h2 class="set">SET 3</h2>
+            </div>
+        </div>
+     <!--    <div class="card">
+            <img src="images/hepa.jpg" alt="Placeholder Image">
+            <div class="card-content">
+                <h3>Hephaestus</h3>
+                <button class="card-button" onclick="AL('Readings/6.html')">Read</button> 
+                <h3 class="circle">6</h3>
+            </div>
+        </div> -->
+        <div class="card">
+            <img src="images/apolo.webp" alt="Placeholder Image">
+            <div class="card-content">
+                <h3>Apollo and Daphne</h3>
+               
+                <button id="readApollo" class="card-button" onclick="AL7('Readings/7.html')">READ</button> 
+                <img src="images/artemis.jpg" alt="Placeholder Image">
+                <h3>Artemis and Callisto</h3>
+                <button  id="readArtemis"class="card-button" onclick="AL8('Readings/8.html')">READ</button> 
+                <h3 class="circle">7</h3>
+                <h2 class="set">SET 4</h2>
+            </div>
+        </div>
+       <button style="display: none;" onclick="enableAllButtons()">CLEAR LOCAL STORAGE</button>
+      
+    </div>
+</body>
+<script>
+  
+ 
+ 
+/*         function AL1(){
+            // Show SweetAlert confirmation message
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to proceed?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Proceed with disabling the button and redirecting
+                    Swal.fire("Button disabled!", "", "success");
+                    document.getElementById("d").disabled = true;
+                    // Store the disabled state in local storage
+                    localStorage.setItem('buttonDisabled', 'true');
+                    setTimeout(function(){
+                        window.location.href = "Readings/1.html";
+                    }, 10000);
+                   
+                }
+            });
+        }
+ */
+ function enableAllButtons() {
+        // Loop through all buttons and enable them
+        var buttons = document.querySelectorAll('.card-button');
+        buttons.forEach(function(button) {
+            button.disabled = false;
+        });
+
+        // Remove disabled state from localStorage for all buttons
+        for (var i = 1; i <= 8; i++) {
+            localStorage.removeItem('buttonDisabled' + i);
+        }
+
+        // Show a message indicating that buttons have been enabled
+        alert('All buttons have been enabled.');
+    }
+
+function AL1() {
+    Swal.fire({
+        title: "Are You Want to Read?",
+        text: "Story of Atalanta for 10 minutes",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById("readAtalanta").disabled = true;
+            localStorage.setItem('buttonDisabled1', 'true');
+            window.location.href = "Readings/1.html";
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled1');
+    if (isButtonDisabled === 'true') {
+      
+        document.getElementById('readAtalanta').disabled = true;
+    }
+});
+
+
+        function AL2() {
+            Swal.fire({
+                title: "Are You Want to Read?",
+                text: "Story of Oedipus for 10 minutes",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("readOedipus").disabled = true;
+                    localStorage.setItem('buttonDisabled2', 'true');
+                    window.location.href = "Readings/2.html";
+                }
+            });
+            document.addEventListener("DOMContentLoaded", function() {
+            // Check if the button was previously disabled
+            var isButtonDisabled = localStorage.getItem('buttonDisabled2');
+            if (isButtonDisabled === 'true') {
+                // If button was disabled, disable it again
+                document.getElementById('readOedipus').disabled = true;
+            }
+        });  
+       
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled2');
+    if (isButtonDisabled === 'true') {
+        // If button was disabled, disable it again
+        document.getElementById('readOedipus').disabled = true;
+    }
+});
+
+
+
+    function AL3() {
+        Swal.fire({
+            title: "Are You Want to Read?",
+            text: "Demeter and Persephone for 10 minutes",
+            icon: "question", 
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    // Proceed with disabling the button and redirecting
+                  /*   Swal.fire("Button disabled!", "", "success"); */
+                    document.getElementById("readDemeter").disabled = true;
+                    // Store the disabled state in local storage
+                    localStorage.setItem('buttonDisabled3', 'true');
+                    window.location.href = "Readings/3.html";
+                   
+                }
+            });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled3');
+    if (isButtonDisabled === 'true') {
+        // If button was disabled, disable it again
+        document.getElementById('readDemeter').disabled = true;
+    }
+});
+    function AL4() {
+        Swal.fire({
+            title: "Are You Want to Read?",
+            text: "The Name giving Athens for 10 minutes",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    // Proceed with disabling the button and redirecting
+                  /*   Swal.fire("Button disabled!", "", "success"); */
+                    document.getElementById("readAthens").disabled = true;
+                    // Store the disabled state in local storage
+                    localStorage.setItem('buttonDisabled4', 'true');
+                    window.location.href= "Readings/4.html";
+                   
+                }
+            });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled4');
+    if (isButtonDisabled === 'true') {
+        // If button was disabled, disable it again
+        document.getElementById('readAthens').disabled = true;
+    }
+});
+    function AL5() {
+        Swal.fire({
+            title: "Are You Want to Read?",
+            text: "The Story of Arachne for 10 minutes",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    // Proceed with disabling the button and redirecting
+                  /*   Swal.fire("Button disabled!", "", "success"); */
+                    document.getElementById("readArachne").disabled = true;
+                    // Store the disabled state in local storage
+                    localStorage.setItem('buttonDisabled5', 'true');
+                   window.location.href = "Readings/5.html";
+                   
+                }
+            });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled5');
+    if (isButtonDisabled === 'true') {
+        // If button was disabled, disable it again
+        document.getElementById('readArachne').disabled = true;
+    }
+});
+    function AL6() {
+        Swal.fire({
+            title: "Are You Want to Read?",
+            text: "Hephasteus of 10 minutes",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    // Proceed with disabling the button and redirecting
+                  /*   Swal.fire("Button disabled!", "", "success"); */
+                    document.getElementById("readHephasteus").disabled = true;
+                    // Store the disabled state in local storage
+                    localStorage.setItem('buttonDisabled6', 'true');
+                    window.location.href ="Readings/6.html";
+                }
+            });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled6');
+    if (isButtonDisabled === 'true') {
+        // If button was disabled, disable it again
+        document.getElementById('readHephasteus').disabled = true;
+    }
+});
+    function AL7() {
+        Swal.fire({
+            title: "Are You Want to Read?",
+            text: "Apollo and Daphne for 10 minutes",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    // Proceed with disabling the button and redirecting
+                  /*   Swal.fire("Button disabled!", "", "success"); */
+                    document.getElementById("readApollo").disabled = true;
+                    // Store the disabled state in local storage
+                    localStorage.setItem('buttonDisabled7', 'true');
+                    window.location.href = "Readings/7.html";
+                }
+            });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled7');
+    if (isButtonDisabled === 'true') {
+        // If button was disabled, disable it again
+        document.getElementById('readApollo').disabled = true;
+    }
+});
+    function AL8() {
+        Swal.fire({
+            title: "Are You Want to Read?",
+            text: "Artemis and Callisto for 10 minutes",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            cancelButtonText: "No"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                    // Proceed with disabling the button and redirecting
+                  /*   Swal.fire("Button disabled!", "", "success"); */
+                    document.getElementById("readArtemis").disabled = true;
+                    // Store the disabled state in local storage
+                    localStorage.setItem('buttonDisabled8', 'true');
+                    window.location.href = "Readings/8.html";
+                   
+                }
+            });
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+    // Check if the button was previously disabled
+    var isButtonDisabled = localStorage.getItem('buttonDisabled8');
+    if (isButtonDisabled === 'true') {
+        // If button was disabled, disable it again
+        document.getElementById('readArtemis').disabled = true;
+    }
+});
+    
+</script>
+
+
+</html>

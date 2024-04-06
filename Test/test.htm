@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Head content -->
+</head>
+<body>
+    <!-- Body content -->
+
+    <button id="readAtalanta" class="card-button" onclick="disableAtalanta()">Read Atalanta</button>
+    <button id="readOedipus" class="card-button" onclick="disableOedipus()">Read Oedipus</button>
+    <button id="quizButton" class="btnQ" onclick="startQuiz()">Quiz</button>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Check if both readings are disabled
+        document.addEventListener("DOMContentLoaded", function() {
+            checkReadingsStatus();
+        });
+
+        function disableAtalanta() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to proceed?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Button disabled!", "", "success");
+                    document.getElementById("readAtalanta").disabled = true;
+                    localStorage.setItem('atalantaDisabled', 'true');
+                    checkReadingsStatus();
+                }
+            });
+        }
+
+        function disableOedipus() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to proceed?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "Cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire("Button disabled!", "", "success");
+                    document.getElementById("readOedipus").disabled = true;
+                    localStorage.setItem('oedipusDisabled', 'true');
+                    checkReadingsStatus();
+                }
+            });
+        }
+
+        function startQuiz() {
+            // Redirect to the quiz page
+            window.location.href = "quiz.html";
+        }
+
+        function checkReadingsStatus() {
+            var isAtalantaDisabled = localStorage.getItem('atalantaDisabled');
+            var isOedipusDisabled = localStorage.getItem('oedipusDisabled');
+
+            if (isAtalantaDisabled === 'true' && isOedipusDisabled === 'true') {
+                document.getElementById('quizButton').style.display = 'block';
+            } else {
+                document.getElementById('quizButton').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

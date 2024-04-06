@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Story of Atalanta</title>
+    <link rel="stylesheet" href="nav.css">
+    <link rel="icon" type="image/x-icon" href="/images/fav.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <nav>
+        <h2>The Story of Atalanta</h2>
+        <div id="timer">00:00:00</div>
+    </nav>
+    <div class="container">
+       <!--  <embed src="1Story of Atalanta.pdf" type="application/pdf" width="100%" height="700px" /> -->
+       <iframe src="https://drive.google.com/file/d/12c9rSSjbJD92h-9qXW_2h16RdLt1efGW/preview" width="100%" height="700px" >Loading…</iframe>
+    </div>
+    <button id="doneButton" class="next" onclick="next()">Done</button>
+</body>
+
+<script>
+    var timerInterval;
+    
+
+    function next() {
+        clearInterval(timerInterval); // Stop the timer
+        localStorage.removeItem('startTime');
+        Swal.fire({
+                title: "Are You Done Reading?",
+                text: "",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Yes",
+                cancelButtonText: "No"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "../RM.html";
+                }
+            }); 
+    }
+
+    function updateTimer() {
+        var startTime = localStorage.getItem('startTime');
+        var currentTime = new Date().getTime();
+        var elapsedTime = currentTime - parseInt(startTime, 10);
+        var totalSeconds = Math.floor((10 * 60 * 1000 - elapsedTime) / 1000); // Total seconds for 10 minutes
+        var hours = Math.floor(totalSeconds / 3600);
+        var minutes = Math.floor((totalSeconds % 3600) / 60);
+        var seconds = totalSeconds % 60;
+        var displayTime = ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + seconds).slice(-2);
+        document.getElementById('timer').innerHTML = displayTime;
+
+        // Show alerts when there are 5 and 2 minutes left
+        if (totalSeconds == 300) {
+            Swal.fire('Only 5 Minutes Left');
+        }
+        if (totalSeconds == 120) {
+            Swal.fire('Only 2 Minutes Left');
+        }
+
+        // Redirect to RM.html when timer reaches 0
+        if (totalSeconds <= 0) {
+            clearInterval(timerInterval); // Stop the timer
+            localStorage.removeItem('startTime'); // Clear the start time
+            window.location.href = "../RM.html"; // Redirect to RM.html
+        }
+    }
+
+    // Call updateTimer when the page loads
+    window.onload = function() {
+        var startTime = localStorage.getItem('startTime');
+        if (startTime) {
+            updateTimer(); // Start timer if previously started
+            timerInterval = setInterval(updateTimer, 1000); // Update timer every second
+        } else {
+            var currentTime = new Date().getTime();
+            localStorage.setItem('startTime', currentTime); // Set start time
+            timerInterval = setInterval(updateTimer, 1000); // Update timer every second
+        }
+    };
+</script>
+</html>
