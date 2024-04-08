@@ -108,6 +108,11 @@
             padding: 5px;
             color: white;
         }
+        #home{
+            background-color: green;
+            padding: 10px;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -200,12 +205,15 @@
             </div>
         </div>
        <button  onclick="enableAllButtons()">CLEAR </button>
+       <button  id="home" onclick="home()">RETURN HOME </button>
       
     </div>
 </body>
 <script>
   
- 
+ function home(){
+    window.location.href = "index.html";
+ }
  
 /*         function AL1(){
             // Show SweetAlert confirmation message
